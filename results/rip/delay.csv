@@ -1,0 +1,6 @@
+source,destination,avg_rtt_ms
+r1,r2,23.883
+r1,r3,66.850
+r1,r4,90.677
+r1,r5,111.165
+r1,r6,85.625
