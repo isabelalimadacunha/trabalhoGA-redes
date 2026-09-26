@@ -1,2 +1,2 @@
 scenario,seconds,packets,bytes,bits_per_second
-ospf,60,42,3672,489
+ospf,60,36,3168,422

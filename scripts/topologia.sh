@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for r in r1 r2 r3 r4 r5 r6; do
+for r in r1 r2 r3 r4 r5 r6 h1 h2 h3 h4 h5 h6; do
     ip netns del $r 2>/dev/null
 done
 
@@ -11,9 +11,17 @@ for i in 1 2 3 4 5 6; do
     ip netns exec r$i sysctl -qw net.ipv4.ip_forward=1
     ip netns exec r$i ip link set lo up
     ip netns exec r$i ip addr add 172.16.0.$i/32 dev lo
-    ip netns exec r$i ip link add lan1 type dummy
-    ip netns exec r$i ip addr add 192.168.$i.1/24 dev lan1
-    ip netns exec r$i ip link set lan1 up
+    # access network: one host per router
+    ip netns add h$i
+    ip link add h$i-r$i type veth peer name r$i-h$i
+    ip link set h$i-r$i netns h$i
+    ip link set r$i-h$i netns r$i
+    ip netns exec r$i ip addr add 192.168.$i.1/24 dev r$i-h$i
+    ip netns exec r$i ip link set r$i-h$i up
+    ip netns exec h$i ip link set lo up
+    ip netns exec h$i ip addr add 192.168.$i.10/24 dev h$i-r$i
+    ip netns exec h$i ip link set h$i-r$i up
+    ip netns exec h$i ip route add default via 192.168.$i.1
 done
 
 # Add cable R1-R2

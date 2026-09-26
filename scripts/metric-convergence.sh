@@ -5,8 +5,8 @@ REPS=${2:-3}
 OUT=results/$SCENARIO
 mkdir -p $OUT
 
-SRC=192.168.1.1
-DEST=192.168.5.1
+HOST=h1
+DEST=192.168.5.10
 LINK=r1-r6
 MAXWAIT=300
 
@@ -22,7 +22,7 @@ for i in $(seq 1 $REPS); do
 
     ok=0
     while [ $ok -eq 0 ]; do
-        if ip netns exec r1 ping -c 1 -W 1 -I $SRC $DEST >/dev/null 2>&1; then
+        if ip netns exec $HOST ping -c 1 -W 1 $DEST >/dev/null 2>&1; then
             ok=1
         fi
         # without the pause the ping loop starves the routing daemons

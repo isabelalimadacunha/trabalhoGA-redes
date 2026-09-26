@@ -1,2 +1,2 @@
 scenario,seconds,packets,bytes,bits_per_second
-rip,60,19,2948,393
+bgp,60,10,834,111
