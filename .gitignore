@@ -1,2 +1,3 @@
 results/*/control.pcap
 scripts/plots.py
+.DS_Store
