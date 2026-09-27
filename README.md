@@ -222,4 +222,5 @@ BGP se recuperam em menos de um segundo.
 
 ## Vídeo
 
-
+Demonstração dos três cenários rodando, com a queda do enlace R1-R6 em cada um:
+[`demo.mp4`](demo.mp4).
