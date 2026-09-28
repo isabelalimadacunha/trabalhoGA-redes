@@ -217,8 +217,9 @@ tabela inteira. O BGP só envia quando alguma rota muda.
 
 ![Convergência](results/plots/convergence.png)
 
-O RIP leva mais de vinte segundos e varia bastante entre as repetições. O OSPF e o
-BGP se recuperam em menos de um segundo.
+O enlace derrubado está no caminho que os três usam para chegar na rede do R6,
+então todos perderam a rota em uso. O RIP levou 10,3 s de média, variando de 5 a
+20. O OSPF levou 0,3 s e o BGP 1,3 s.
 
 ## Vídeo
 

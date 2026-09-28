@@ -1,12 +1,13 @@
 #!/bin/bash
 # time the network takes to recover after the link r1-r6 goes down
+# the three protocols reach the network of r6 through that link, so all of them lose the active route
 SCENARIO=$1
 REPS=${2:-3}
 OUT=results/$SCENARIO
 mkdir -p $OUT
 
 HOST=h1
-DEST=192.168.5.10
+DEST=192.168.6.10
 LINK=r1-r6
 MAXWAIT=300
 
